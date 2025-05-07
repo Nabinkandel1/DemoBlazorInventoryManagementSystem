@@ -16,4 +16,4 @@ namespace Domain.Interfaces
         Task UpdateAsync(Product product);
         Task<List<Product>> GetLowStockAsync(int threshold);
     }
-}
+}  
