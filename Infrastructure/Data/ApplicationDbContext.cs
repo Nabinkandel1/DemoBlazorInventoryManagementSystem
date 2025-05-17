@@ -50,6 +50,43 @@ namespace Infrastructure.Data
                 new Category { Id = 1, Name = "Electronics", Description = "Laptops, Mobiles, etc." },
                 new Category { Id = 2, Name = "Clothing", Description = "T-Shirts, Jeans, etc." }
             );
+
+            //Seed User
+            // Seed Users
+            modelBuilder.Entity<User>().HasData(
+                new User
+                {
+                    Id = 1,
+                    Name = "admin",
+                    Email = "admin@admin.com",
+                    Password = "Password123", // Usually not stored directly for security reasons
+                    PasswordHash = Convert.FromBase64String("YScaCdfH/jXswXDNrj+Tn6b6FNi0GyYAnGeAEAE12lA="),
+                    PasswordSalt = Convert.FromBase64String("YP0yQCTT7T8a+BaThkXTY7PCmOd1M+AnVsl7rD1PqsU="),
+                    RoleId = 1,
+                    CreatedAt = DateTime.UtcNow
+                },
+                new User
+                {
+                    Id = 2,
+                    Name = "manager",
+                    Email = "manager@manager.com",
+                    Password = "Password123", // Usually not stored directly for security reasons
+                    PasswordHash = Convert.FromBase64String("YScaCdfH/jXswXDNrj+Tn6b6FNi0GyYAnGeAEAE12lA="),
+                    PasswordSalt = Convert.FromBase64String("YP0yQCTT7T8a+BaThkXTY7PCmOd1M+AnVsl7rD1PqsU="),
+                    RoleId = 2,
+                    CreatedAt = DateTime.UtcNow
+                },
+                new User
+                {
+                    Id = 3,
+                    Name = "staff",
+                    Email = "staff@staff.com",
+                    Password = "Password123", // Usually not stored directly for security reasons
+                    PasswordHash = Convert.FromBase64String("YScaCdfH/jXswXDNrj+Tn6b6FNi0GyYAnGeAEAE12lA="),
+                    PasswordSalt = Convert.FromBase64String("YP0yQCTT7T8a+BaThkXTY7PCmOd1M+AnVsl7rD1PqsU="),
+                    RoleId = 3,
+                    CreatedAt = DateTime.UtcNow
+                });
         }
     }
 }
