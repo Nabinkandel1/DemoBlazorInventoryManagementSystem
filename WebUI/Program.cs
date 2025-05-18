@@ -1,3 +1,5 @@
+using Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 using WebUI.Components;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -5,6 +7,21 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+if (string.IsNullOrEmpty(connectionString))
+{
+    throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+}
+// WebUI/Program.cs
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+{
+    options.UseSqlServer(
+        builder.Configuration.GetConnectionString("DefaultConnection"),
+        sqlOptions =>
+        {
+            sqlOptions.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName);
+        });
+});
 
 var app = builder.Build();
 

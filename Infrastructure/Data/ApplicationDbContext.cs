@@ -63,7 +63,7 @@ namespace Infrastructure.Data
                     PasswordHash = Convert.FromBase64String("YScaCdfH/jXswXDNrj+Tn6b6FNi0GyYAnGeAEAE12lA="),
                     PasswordSalt = Convert.FromBase64String("YP0yQCTT7T8a+BaThkXTY7PCmOd1M+AnVsl7rD1PqsU="),
                     RoleId = 1,
-                    CreatedAt = DateTime.UtcNow
+                    CreatedAt = new DateTime(2025, 05, 18)
                 },
                 new User
                 {
@@ -74,7 +74,7 @@ namespace Infrastructure.Data
                     PasswordHash = Convert.FromBase64String("YScaCdfH/jXswXDNrj+Tn6b6FNi0GyYAnGeAEAE12lA="),
                     PasswordSalt = Convert.FromBase64String("YP0yQCTT7T8a+BaThkXTY7PCmOd1M+AnVsl7rD1PqsU="),
                     RoleId = 2,
-                    CreatedAt = DateTime.UtcNow
+                    CreatedAt = new DateTime(2025, 05, 18)
                 },
                 new User
                 {
@@ -85,7 +85,7 @@ namespace Infrastructure.Data
                     PasswordHash = Convert.FromBase64String("YScaCdfH/jXswXDNrj+Tn6b6FNi0GyYAnGeAEAE12lA="),
                     PasswordSalt = Convert.FromBase64String("YP0yQCTT7T8a+BaThkXTY7PCmOd1M+AnVsl7rD1PqsU="),
                     RoleId = 3,
-                    CreatedAt = DateTime.UtcNow
+                    CreatedAt = new DateTime(2025, 05, 18)
                 });
         }
     }
