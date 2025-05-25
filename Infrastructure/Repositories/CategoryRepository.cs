@@ -16,24 +16,44 @@ namespace Infrastructure.Repositories
 
         public async Task<List<Category>> GetAllAsync()
         {
-            return await _context.Categories.ToListAsync();
+            var categoryList = await _context.Categories.ToListAsync();
+            if (categoryList == null || !categoryList.Any())
+            {
+                return new List<Category>();
+            }
+            return categoryList;
         }
 
         public async Task<Category?> GetByIdAsync(int id)
         {
-            return await _context.Categories
+            var result = await _context.Categories
                 .FirstOrDefaultAsync(c => c.Id == id);
+            if (result == null)
+            {
+                return null; // Return null if no category found
+            }
+            return result;
         }
 
         public async Task AddAsync(Category category)
         {
-            await _context.Categories.AddAsync(category);
+            var categoryAdd = _context.Categories.AddAsync(category);
+            if (categoryAdd == null)
+            {
+                throw new ArgumentNullException(nameof(category), "Category cannot be null");
+            }
+            var categoryList = categoryAdd.ToString(); // Return the added category
             await _context.SaveChangesAsync();
         }
 
         public async Task UpdateAsync(Category category)
         {
-            _context.Categories.Update(category);
+            var categoryUpdate = _context.Categories.Update(category);
+            if (categoryUpdate == null)
+            {
+                throw new ArgumentNullException(nameof(category), "Category cannot be null");
+            }
+            var categoryList = categoryUpdate.ToString(); // Return the updated category
             await _context.SaveChangesAsync();
         }
 
