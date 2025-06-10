@@ -1,0 +1,26 @@
+﻿@page "/categories"
+@using Domain.Entities
+@inject HttpClient http
+
+
+
+
+
+@* html code to display table  *@
+
+
+@code{
+
+	private List<Category>? category;
+	protected override async Task OnInitializedAsync()
+	{
+		try
+		{
+			category = await http.GetFromJsonAsync<List<Category>>("api/category");
+		}
+		catch(Exception ex)
+		{
+			Console.WriteLine($"{ex.Message}");
+		}
+	}
+}
