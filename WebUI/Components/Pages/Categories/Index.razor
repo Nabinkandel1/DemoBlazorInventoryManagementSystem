@@ -3,13 +3,40 @@
 @inject HttpClient http
 
 
+@if (category == null)
+{
+	<p>Loading...</p>
+}
+else
+{
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>S.N</th>
+				<th>Name</th>
+				<th>Description</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			@for( int i=0; i<category.Count; i++)
+			{
+				<tr>
+					<td>@(i+1)</td>
+					<td>@category[i].Name</td>
+					<td>@category[i].Description</td>
+					<td>
+						<a class="btn btn-info btn-sm" href="/categories/details">Details</a>
+						<a class="btn btn-warning btn-sm" href="/categories/edit">Edit</a>
+						<a class="btn btn-danger btn-sm">Delete</a>
+					</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+}
 
-
-
-@* html code to display table  *@
-
-
-@code{
+@code {
 
 	private List<Category>? category;
 	protected override async Task OnInitializedAsync()
@@ -18,7 +45,7 @@
 		{
 			category = await http.GetFromJsonAsync<List<Category>>("api/category");
 		}
-		catch(Exception ex)
+		catch (Exception ex)
 		{
 			Console.WriteLine($"{ex.Message}");
 		}
